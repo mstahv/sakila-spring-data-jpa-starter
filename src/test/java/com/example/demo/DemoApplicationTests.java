@@ -40,4 +40,11 @@ class DemoApplicationTests {
 		Assertions.assertEquals("MARY", customer.getFirstName());
 	}
 
+	@Test
+	void testEntityEquals(@Autowired CustomerRepository customerRepository) {
+		Customer customer1 = customerRepository.findById(1L).get();
+		Customer customer2 = customerRepository.findById(1L).get();
+		Assertions.assertEquals(customer1, customer2);
+	}
+
 }

@@ -21,30 +21,18 @@ package com.example.demo.sakilaentities;
  */
 
 import jakarta.persistence.Column;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
-import jakarta.validation.constraints.NotNull;
-import java.util.Collection;
+
 import java.util.Comparator;
 import java.util.Date;
-import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-import java.util.function.UnaryOperator;
-import java.util.stream.Stream;
+import java.util.Objects;
 
 import static java.util.Comparator.comparing;
-import static java.util.Objects.requireNonNull;
 
 /**
  * An abstract base class for entity classes.
@@ -84,74 +72,27 @@ public abstract class BaseEntity {
         return natural ? COMPARING_ID : COMPARING_ID.reversed();
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
-    private static <T extends BaseEntity, R> R query(
-            final EntityManager entityManager, final Class<T> entityClass,
-            final BiFunction<CriteriaBuilder, Root<T>, Collection<? extends Predicate>> predicatesFunction,
-            final Function<? super TypedQuery<T>, ? extends R> queryFunction) {
-        final CriteriaBuilder criteriaBuilder
-                = requireNonNull(entityManager, "entityManager is null").getCriteriaBuilder();
-        final CriteriaQuery<T> criteriaQuery
-                = criteriaBuilder.createQuery(requireNonNull(entityClass, "entityClass is null"));
-        final Root<T> root = criteriaQuery.from(entityClass);
-        final Collection<? extends Predicate> predicates
-                = requireNonNull(predicatesFunction, "predicatesFunction is null").apply(criteriaBuilder, root);
-        if (predicates != null && !predicates.isEmpty()) {
-            criteriaQuery.where(predicates.toArray(new Predicate[0]));
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        final TypedQuery<T> typedQuery = entityManager.createQuery(criteriaQuery);
-        return requireNonNull(queryFunction, "queryFunction is null").apply(typedQuery);
+        if(this.id == null) {
+            return false;
+        }
+
+        if (obj instanceof BaseEntity && obj.getClass().equals(getClass())) {
+            return this.id.equals(((BaseEntity) obj).id);
+        }
+
+        return false;
     }
 
-    static <T extends BaseEntity> T find(
-            @NotNull final EntityManager entityManager, @NotNull final Class<T> entityClass,
-            @NotNull final BiFunction<CriteriaBuilder, Root<T>, Collection<? extends Predicate>> predicatesFunction,
-            @NotNull final UnaryOperator<TypedQuery<T>> queryOperator) {
-        return query(entityManager, entityClass, predicatesFunction,
-                     q -> requireNonNull(queryOperator, "queryOperator is null").apply(q).getSingleResult());
-    }
-
-    static <T extends BaseEntity> List<T> list(
-            @NotNull final EntityManager entityManager, @NotNull final Class<T> entityClass,
-            @NotNull final BiFunction<CriteriaBuilder, Root<T>, Collection<? extends Predicate>> predicatesFunction,
-            @NotNull final UnaryOperator<TypedQuery<T>> queryOperator) {
-        return query(entityManager, entityClass, predicatesFunction,
-                     q -> requireNonNull(queryOperator, "queryOperator is null").apply(q).getResultList());
-    }
-
-    static <T extends BaseEntity> Stream<T> select(
-            @NotNull final EntityManager entityManager, @NotNull final Class<T> entityClass,
-            @NotNull final BiFunction<CriteriaBuilder, Root<T>, Collection<? extends Predicate>> predicatesFunction,
-            @NotNull final UnaryOperator<TypedQuery<T>> queryOperator) {
-        return query(entityManager, entityClass, predicatesFunction,
-                     q -> requireNonNull(queryOperator, "queryOperator is null").apply(q).getResultStream());
-    }
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
-     * Returns a string representation of the object.
-     *
-     * @return a string representation of the object.
-     */
-    @Override
-    public String toString() {
-        return super.toString() + "{"
-               + "id=" + id
-               + ",lastUpdate=" + lastUpdate
-               + "}";
-    }
-
-    // TODO: 2019-07-12 remove!!!
-    @Override
-    public boolean equals(final Object obj) {
-        return super.equals(obj);
-    }
-
-    // TODO: 2019-07-12 remove!!!
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int hash = 5;
+        hash = 43 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 
     // -------------------------------------------------------------------------------------------------------------- id
