@@ -27,7 +27,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.springframework.data.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Objects;
@@ -70,6 +74,15 @@ public abstract class BaseEntity {
 
     public static Comparator<BaseEntity> comparingId(final boolean natural) {
         return natural ? COMPARING_ID : COMPARING_ID.reversed();
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return ReflectionToStringBuilder.toString(this);
+        } catch (org.hibernate.LazyInitializationException e) {
+            return "HbnProxy:" + getClass().getSimpleName() + ":" +id;
+        }
     }
 
     @Override

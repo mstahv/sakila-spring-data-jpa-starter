@@ -266,26 +266,6 @@ public class Address extends BaseEntity {
         super();
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
-     * Returns a string representation of the object.
-     *
-     * @return a string representation of the object.
-     */
-    @Override
-    public String toString() {
-        return super.toString() + "{"
-               + "address=" + address
-               + ",address2=" + address2
-               + ",district=" + district
-               + ",city=" + city
-               + ",postalCode=" + postalCode
-               + ",phone=" + phone
-               + ",location=" + Arrays.toString(location)
-               + "}";
-    }
-
     // --------------------------------------------------------------------------------------------------------- address
 
     /**

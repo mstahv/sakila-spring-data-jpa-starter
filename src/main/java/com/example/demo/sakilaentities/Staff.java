@@ -102,22 +102,6 @@ public class Staff extends BaseEntity implements FullNamed {
 
     public static final int SIZE_MAX_PASSWORD = 40;
 
-    // -----------------------------------------------------------------------------------------------------------------
-
-    @Override
-    public String toString() {
-        return super.toString() + "{"
-               + "firstName=" + firstName
-               + ",lastName=" + lastName
-               + ",address=" + address
-               + ",picture=" + Arrays.toString(picture)
-               + ",email='" + email + '\''
-               + ",store=" + store
-               + ",active=" + active
-               + ",username=" + username
-               + ",password=" + password
-               + "}";
-    }
 
     // ------------------------------------------------------------------------------------------------------- firstName
     @Override

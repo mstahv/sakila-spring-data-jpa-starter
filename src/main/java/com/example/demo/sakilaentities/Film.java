@@ -760,29 +760,6 @@ public class Film extends BaseEntity {
         return categoryAdded;
     }
 
-    // ---------------------------------------------------------------------------------------------------------- actors
-    // TODO: 7/13/2019 remove!!!
-    @Deprecated // forRemoval = true
-    public Set<Actor> getActors() {
-        if (actors == null) {
-            actors = new HashSet<>();
-        }
-        return actors;
-    }
-
-    // TODO: 7/13/2019 remove!!!
-    @Deprecated // forRemoval = true
-    public boolean addActor(final Actor actor) {
-        if (actor == null) {
-            throw new NullPointerException("actor is null");
-        }
-        final boolean actorAdded = getActors().add(actor); // TODO: 2019-07-23 equals/hashCode???
-        if (!actor.getFilms().contains(this)) {
-            final boolean addedToActor = actor.addFilm(this);
-        }
-        return actorAdded;
-    }
-
     // -----------------------------------------------------------------------------------------------------------------
     @Size(max = SIZE_MAX_TITLE)
     @NotNull
@@ -887,9 +864,4 @@ public class Film extends BaseEntity {
     @NamedAttribute(ATTRIBUTE_NAME_CATEGORIES)
     private Set<Category> categories;
 
-    // TODO: 2019-07-11 remove!!!
-    @Deprecated
-    @ManyToMany(mappedBy = Actor.ATTRIBUTE_NAME_FILMS)
-    @NamedAttribute(ATTRIBUTE_NAME_ACTORS)
-    private Set<Actor> actors;
 }

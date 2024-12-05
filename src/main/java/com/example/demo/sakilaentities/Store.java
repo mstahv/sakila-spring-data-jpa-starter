@@ -114,22 +114,6 @@ public class Store extends BaseEntity {
         super();
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /**
-     * Returns a string representation of the object.
-     *
-     * @return a string representation of the object.
-     */
-    @Override
-    public String toString() {
-        return super.toString() + "{"
-               + "manager=" + manager
-               + ",address=" + address
-               + "}";
-    }
-
-    // TODO: 2019-07-10 equals/hashCode???
 
     // --------------------------------------------------------------------------------------------------------- manager
 
