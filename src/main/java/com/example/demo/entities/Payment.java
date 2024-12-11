@@ -45,10 +45,6 @@ public class Payment {
     @Column(name = "payment_date", nullable = false)
     private Instant paymentDate;
 
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "last_update")
-    private Instant lastUpdate;
-
     public Integer getId() {
         return id;
     }
@@ -95,14 +91,6 @@ public class Payment {
 
     public void setPaymentDate(Instant paymentDate) {
         this.paymentDate = paymentDate;
-    }
-
-    public Instant getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Instant lastUpdate) {
-        this.lastUpdate = lastUpdate;
     }
 
 }
