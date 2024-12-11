@@ -29,6 +29,12 @@ Trying to keep other differences than testcontainer configurations to the minimu
  * Utilize the ["entity explorer"](http://localhost:8080/explorer/) from the test application to browse the database state and to make limited edits during development.
  * Ready? Implement your demo app to the **src/main/java** folder!
 
+Screenshot of the entity explorer available for testing and development purposes:
+
+<img width="1233" alt="Screenshot 2024-12-11 at 20 41 41" src="https://github.com/user-attachments/assets/2e7fa713-75a9-4f7e-95a8-543afb556a16" />
+
+Note, if you plan to use Vaadin for your example, you should recognise that the explorer is built with Vaadin and and its dependencies in the test scope may interfere with your app. Replace the Vaadin dependencies from the test scope with actual setup to default scope!
+
 ## TODO, ideas for further development of the starter
 
  * Add some generic filtering for grids
@@ -37,3 +43,4 @@ Trying to keep other differences than testcontainer configurations to the minimu
  * Add some service classes
  * Cleanup for the "entity explorer code" on the test application
  * Branches for different database types (currently only MySQL and PostgreSQL)
+ * Gradle branches (or both Maven and Gradle build files)
