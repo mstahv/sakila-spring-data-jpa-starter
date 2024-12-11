@@ -37,6 +37,7 @@ import java.lang.reflect.Parameter;
 import java.time.Instant;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 @Route(layout = TopLayout.class)
 @MenuItem(hidden = true)
@@ -151,8 +152,9 @@ public class EntityEditorView extends VVerticalLayout implements EntityManagerAw
                     Field javaMember = (Field) attribute.getJavaMember();
                     javaMember.set(entity, Instant.now());
                 }
-            } catch (IllegalAccessException ex) {
-                throw new RuntimeException(ex);
+            } catch (Exception ex) {
+                // NOP, there are entities (at least on postgres version) that don't have the column
+                Logger.getLogger(getClass().getName()).info("No last update field found for entity of type " + entityType.getName());
             }
             em.getTransaction().begin();
             em.merge(entity);
