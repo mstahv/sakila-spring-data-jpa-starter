@@ -26,5 +26,4 @@ class TestcontainersConfiguration {
 				.withUsername("sakila")
 				.withPassword("p_ssW0rd");
 	}
-
 }
