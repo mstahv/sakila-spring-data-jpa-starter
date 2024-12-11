@@ -163,13 +163,6 @@ public class EntityEditorView extends VVerticalLayout implements EntityManagerAw
 
         add(form.getFormBody());
         add(form.getActions());
-        form.getBinder().addValueChangeListener(e -> {
-
-            Object value = e.getValue();
-            boolean valid = form.getBinder().isValid();
-            System.out.println("Value: " + value + " valid: " + valid);
-
-        });
 
         add(new VButton("Display property details...", e -> {
             showPropertyDetails(entityType, form);
