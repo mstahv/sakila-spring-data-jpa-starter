@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -27,8 +26,7 @@ public class Film {
     @Column(name = "title", nullable = false, length = 128)
     private String title;
 
-    @Lob
-    @Column(name = "description")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "release_year")
@@ -61,12 +59,10 @@ public class Film {
     private BigDecimal replacementCost;
 
     @ColumnDefault("'G'")
-    @Lob
-    @Column(name = "rating")
+    @Column(columnDefinition = "TEXT")
     private String rating;
 
-    @Lob
-    @Column(name = "special_features")
+    @Column(name = "special_features", columnDefinition = "TEXT")
     private String specialFeatures;
 
     @NotNull
