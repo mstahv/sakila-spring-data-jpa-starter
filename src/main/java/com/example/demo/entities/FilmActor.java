@@ -48,6 +48,7 @@ public class FilmActor {
 
     public void setActor(Actor actor) {
         this.actor = actor;
+        updateId();
     }
 
     public Film getFilm() {
@@ -56,6 +57,15 @@ public class FilmActor {
 
     public void setFilm(Film film) {
         this.film = film;
+        updateId();
+    }
+
+    private void updateId() {
+        if(actor != null && film != null) {
+            id = new FilmActorId();
+            id.setActorId(actor.getId());
+            id.setFilmId(film.getId());
+        }
     }
 
     public Instant getLastUpdate() {
