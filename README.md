@@ -26,7 +26,7 @@ Trying to keep other differences than testcontainer configurations to the minimu
  * Import to your favourite IDE
  * Make sure you have Docker running
  * Run the `TestDemoApplication` class from the **src/test/java** folder. This will start the Spring Boot application and initialize the database with TestContainers.
- * Utilize the ["entity explorer"](http://localhost:8080/explorer/) from the test application to browse the database state and to make limited edits during development.
+ * Utilize the ["entity explorer"](http://localhost:8080/entityexplorer/) from the test application to browse the database state and to make limited edits during development.
  * Ready? Implement your demo app to the **src/main/java** folder!
 
 ## TODO, ideas for further development of the starter
