@@ -3,6 +3,8 @@ package com.example.demo.entities;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
@@ -19,6 +21,7 @@ import java.time.Instant;
 @Table(name = "film")
 public class Film {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "film_id", columnDefinition = "smallint UNSIGNED not null")
     private Integer id;
 
