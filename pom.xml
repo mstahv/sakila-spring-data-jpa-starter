@@ -53,26 +53,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-spring-boot-starter</artifactId>
-			<version>24.5.8</version>
-			<scope>test</scope>
-			<exclusions>
-				<!-- These not used and they slow down the app startup -->
-				<exclusion>
-					<groupId>com.vaadin</groupId>
-					<artifactId>copilot</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.vaadin</groupId>
-					<artifactId>hilla</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>in.virit</groupId>
-			<artifactId>viritin</artifactId>
-			<version>2.11.0</version>
+			<groupId>in.virit.entityexplorer</groupId>
+			<artifactId>entity-explorer</artifactId>
+			<version>0.0.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -80,7 +63,6 @@
 			<artifactId>spring-boot-testcontainers</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>junit-jupiter</artifactId>
