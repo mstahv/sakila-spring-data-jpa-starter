@@ -31,9 +31,7 @@ Trying to keep other differences than testcontainer configurations to the minimu
 
 ## TODO, ideas for further development of the starter
 
- * Add some generic filtering for grids
- * Inserting new entities and deleting existing ones
- * Add missing entities/repositories
- * Add some service classes
- * Cleanup for the "entity explorer code" on the test application
+* Add missing entities/repositories
+* Add some service classes
+ * Deleting existing entities (to entity explorer)
  * Branches for different database types (currently only MySQL and PostgreSQL)
