@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class SpringDataGrid<T> extends VGrid<T> {
 
-    interface LazyDataBinding<T> extends SerializableFunction<Pageable, Stream<T>> {
+    interface RowFetchCallback<T> extends SerializableFunction<Pageable, Stream<T>> {
 
     }
 
@@ -18,7 +18,8 @@ public class SpringDataGrid<T> extends VGrid<T> {
         super(beanType);
     }
 
-    void updateBinding(LazyDataBinding<T> binding) {
+    void setRows(RowFetchCallback<T> binding) {
+        // convert the Vaadin Query to a Spring Pageable
         setItems(query -> {
             PageRequest springPageRequest = VaadinSpringDataHelpers.toSpringPageRequest(query);
             return binding.apply(springPageRequest);

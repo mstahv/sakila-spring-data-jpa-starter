@@ -24,6 +24,6 @@ public class ActorInfoGrid extends SpringDataGrid<ActorInfo> {
     }
 
     public void filterByFirstname(String filter) {
-        updateBinding(pageRequest -> actorInfoService.findByFirstName(filter, pageRequest));
+        setRows(pageRequest -> actorInfoService.findByFirstName(filter, pageRequest));
     }
 }
