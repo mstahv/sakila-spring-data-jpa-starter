@@ -3,14 +3,11 @@ package com.example.demo.vaadinui;
 import com.example.demo.entities.views.ActorInfo;
 import com.vaadin.flow.dom.Style;
 import com.vaadin.flow.spring.annotation.SpringComponent;
-import com.vaadin.flow.spring.data.VaadinSpringDataHelpers;
 import org.springframework.context.annotation.Scope;
-import org.springframework.data.domain.PageRequest;
-import org.vaadin.firitin.components.grid.VGrid;
 
 @SpringComponent
 @Scope("prototype")
-public class ActorInfoGrid extends VGrid<ActorInfo> {
+public class ActorInfoGrid extends SpringDataGrid<ActorInfo> {
     private final ActorInfoService actorInfoService;
 
     public ActorInfoGrid(ActorInfoService actorInfoService) {
@@ -26,11 +23,7 @@ public class ActorInfoGrid extends VGrid<ActorInfo> {
         filterByFirstname("");
     }
 
-    public void filterByFirstname(String value) {
-        setItems(query -> {
-            PageRequest springPageRequest = VaadinSpringDataHelpers.toSpringPageRequest(query);
-            // Might be handy to use Spring's PageRequest instead of Vaadin's Query in the API!?
-            return actorInfoService.findByFirstName(value, springPageRequest);
-        });
+    public void filterByFirstname(String filter) {
+        updateBinding(pageRequest -> actorInfoService.findByFirstName(filter, pageRequest));
     }
 }
