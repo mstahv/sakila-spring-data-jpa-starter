@@ -29,7 +29,8 @@ public class ActorInfoGrid extends VGrid<ActorInfo> {
     public void filterByFirstname(String value) {
         setItems(query -> {
             PageRequest springPageRequest = VaadinSpringDataHelpers.toSpringPageRequest(query);
-            return actorInfoService.findByFirstName(value, springPageRequest).toList().stream();
+            // Might be handy to use Spring's PageRequest instead of Vaadin's Query in the API!?
+            return actorInfoService.findByFirstName(value, springPageRequest);
         });
     }
 }
