@@ -6,7 +6,7 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.containers.MariaDBContainer;
 import org.testcontainers.utility.DockerImageName;
 
 @TestConfiguration(proxyBeanMethods = false)
@@ -17,10 +17,10 @@ class TestcontainersConfiguration {
 
 	@Bean
 	@ServiceConnection
-	MySQLContainer<?> mysqlContainer() {
-		DockerImageName myImage = DockerImageName.parse("sakiladb/mysql:8")
-				.asCompatibleSubstituteFor("mysql");
-		return new MySQLContainer<>(myImage)
+	MariaDBContainer<?> mariadbContainer() {
+		DockerImageName myImage = DockerImageName.parse("sakiladb/mariadb:11")
+				.asCompatibleSubstituteFor("mariadb");
+		return new MariaDBContainer<>(myImage)
 				.withReuse(true)
 				.withDatabaseName("sakila")
 				.withUsername("sakila")
